@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @notifications = Notification.all
+    @notifications = Notification.where(recipient: current_user).or(Notification.where(sender: current_user))
 
     render json: @notifications
   end
@@ -26,11 +26,21 @@ class NotificationsController < ApplicationController
     @notification = Notification.new(notification_params)
     @notification.sender_id = current_user.id
     if @notification.save
-      render json: @notification
+      redirect_to root_path
     end
   end
 
+  def destroy
+    @notification = Notification.find(params[:id])
+    if @notification.read_at && @notification.recipient_id == current_user.id
+      @notification.destroy
+    end
+
+    redirect_to root_path
+  end
+
   private
+
   def notification_params
     params.require(:notification).permit(:recipient_id, :title, :description)
   end

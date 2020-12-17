@@ -5,9 +5,9 @@ class Ability
 
   def initialize(user)
     if user.client?
-      can :read, Notification, recipient_id: user.id
+      can [:read, :destroy], Notification, recipient_id: user.id
     elsif user.admin?
-      can :manage, Notification, sender_id: user.id
+      can [:read, :create], Notification, sender_id: user.id
     end
   end
 end
