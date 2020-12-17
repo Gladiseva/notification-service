@@ -1,24 +1,17 @@
-# README
+# Back-End for a new notification center
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### Requirements
+- **Ruby 2.7.2**
+- **Rails 5.2.4.4**
+- **PostgreSQL 11+**
 
-Things you may want to cover:
+### Configuration
+Pre-configured `dev` (application.yml section) profile includes:
+- DB connection to local PostgreSQL database called `notification-service_development` with credentials `postgres/1password!`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
+### Database
 * Database creation
+
 
 * Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
