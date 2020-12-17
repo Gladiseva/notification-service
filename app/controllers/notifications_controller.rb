@@ -1,9 +1,10 @@
 class NotificationsController < ApplicationController
   before_action :authenticate_user!
+  load_and_authorize_resource
   skip_before_action :verify_authenticity_token
 
   def index
-    @notifications = Notification.where(recipient: current_user)
+    @notifications = Notification.all
 
     render json: @notifications
   end

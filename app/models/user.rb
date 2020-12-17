@@ -6,4 +6,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :notifications, foreign_key: :recipient_id
+
+  def admin?
+    has_role?(:admin)
+  end
+
+  def client?
+    has_role?(:client)
+  end
+
 end
