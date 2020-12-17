@@ -23,6 +23,7 @@ class NotificationsController < ApplicationController
 
   def create
     @notification = Notification.new(notification_params)
+    @notification.sender_id = current_user.id
     if @notification.save
       render json: @notification
     end
@@ -30,7 +31,7 @@ class NotificationsController < ApplicationController
 
   private
   def notification_params
-    params.require(:notification).permit(:recipient_id, :sender_id, :title, :description)
+    params.require(:notification).permit(:recipient_id, :title, :description)
   end
 
 end
