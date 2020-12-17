@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    @notifications = Notification.where(recipient: current_user).or(Notification.where(sender: current_user))
+    @notifications = Notification.where(recipient: current_user).or(Notification.where(sender: current_user)).most_relevant
 
     render json: @notifications
   end
