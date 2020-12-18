@@ -16,12 +16,6 @@ class NotificationsController < ApplicationController
     render json: @notification
   end
 
-  def new
-    @notification = Notification.new
-
-    render json: @notification
-  end
-
   def create
     @notification = Notification.new(notification_params)
     @notification.sender_id = current_user.id
