@@ -7,28 +7,29 @@
 
 
 
-#####Below are the setups to run Ruby on Rails application on your system:
+##### Below are the setups to run Ruby on Rails application on your system:
 
-####Dependencies
+#### Dependencies
 
 Install all dependencie: `bundle install`
 
-####Configuration
+#### Configuration
 Pre-configured `dev` (database.yml section) profile includes:
 - DB connection to local PostgreSQL database called `notification-service_development` (inherited from default), with credentials:
   - host: `localhost`
   - username: `postgres`
   - password: `1password!`
 
-####Database
+#### Database
 Create db and migrate schema:
 - `rake db:create`
 - `rake db:migrate`
 
+The data can then be loaded in DB with the rails `rake db:seed` command.
+
 Now run your application: `rails s`
 
-###Usage
-The data can then be loaded in DB with the rails `rake db:seed` command.
+### Usage
 
 Two users are created to seed the database with its default values:
 
@@ -43,14 +44,14 @@ Users with **client** role has permissions to:
   - see all notifications (where user is sender or recipient)
   - delete notifications, but only those, which are already read/seen
 
-####Routes
+#### Routes
 - GET localhost:3000 (accessible by all roles, whether recipient or sender)
 - GET localhost:3000/notifications (accessible by all roles, whether recipient or sender)
 - GET localhost:3000/notifications/:id (accessible by all roles, but only for user who is recipient)
 - POST localhost:3000/notifications (accessible by admin)
 - DELETE localhost:3000/notifications/:id (accessible by client)
 
-#####Back-end can be tested with Postman (Example):
+##### Back-end can be tested with Postman (Example):
 Select: Authorization -> Basic Auth:
 
 -`email: 'admin@admin.com', password: '1admin!'`
